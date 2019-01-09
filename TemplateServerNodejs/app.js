@@ -23,7 +23,7 @@ var loaixe_router = require('./routers/loaixe_router');
 var taikhoan_router = require('./routers/taikhoan_router');
 var vexe_router = require('./routers/vexe_router');
 var tuyenxe_router=require('./routers/tuyenxe_router');
-var admin_router=require('./routers/admin_router');
+var admin_router=require('./routers/Admin_router');
 var thanhtoan_router = require('./routers/thanhtoan_router');
 
 app.use('/api/huyve', vexe_router);
