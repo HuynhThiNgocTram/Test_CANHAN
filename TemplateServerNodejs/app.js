@@ -7,6 +7,10 @@ app.use(session({secret: 'yourpassword'}));
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 app.use(express.static(path.join(__dirname, 'public')))
+
+app.use('/',function(rep,res){
+  res.send('test');
+  });
 app.use(function (req, res, next) {
   if (req.originalUrl.substr(0, 5) != '/api/')
     res.redirect('/#' + req.originalUrl);
@@ -14,7 +18,9 @@ app.use(function (req, res, next) {
     next();
 });
 
-
+app.use('/test',function(rep,res){
+res.send('test');
+});
 var sinhvien_router = require('./routers/sinhvien_router');
 var user_router = require('./routers/user_router');
 var khachhang_router = require('./routers/khachhang_router');
