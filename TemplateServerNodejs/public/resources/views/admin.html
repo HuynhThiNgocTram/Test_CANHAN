@@ -1,0 +1,312 @@
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                <ul id="verticalMenu" style="width:210px; color:dodgerblue ;height:150px;">
+                    <li id="idtkkh">Tài khoản khách hàng</li>
+                    <li id="iddsnx">Danh sách nhà xe</li>
+                    <li id="iddsv">Danh sách vé</li>
+                </ul>
+                <script>
+                    $(document).ready(function () {
+                        $("#horizontalMenu").kendoMenu({
+                            scrollable: true
+                        });
+
+                        $("#verticalMenu").kendoMenu({
+                            scrollable: true,
+                            orientation: "vertical"
+                        });
+                    });
+                </script>
+                <style>
+                    .k-menu-scroll-wrapper.horizontal li.k-item.k-last {
+                        border-right-width: 0;
+                    }
+
+                    #verticalMenu {
+                        margin-top: 75px;
+                    }
+                </style>
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                <div class="dstk">
+                    <div id="grid"></div>
+                    <div id="details"></div>
+                    <style>
+                        #grid {
+                            margin-top: 10px;
+                        }
+                    </style>
+                    <script>
+                        var wnd, detailsTemplate;
+                        $(document).ready(function () {
+                           var grid= $("#grid").kendoGrid({
+                                dataSource: {
+                                    data: null,
+                                    schema: {
+                                        model: {
+                                            fields: {
+                                                id: { type: "number" },
+                                                tenkh: { type: "string" },
+                                                TENDANGNHAP: { type: "string" },
+                                                dienthoai: { type: "string" },
+                                                CMND: { type: "string" },
+                                                DIACHI: { type: "string" },
+                                            }
+                                        }
+                                    },
+                                    pageSize: 2,
+                                    aggregate: [{ field: "tenkh", aggregate: "count" }]
+                                },
+                                height: 550,
+                                sortable: true,
+                                pageable: {
+                                    input: true,
+                                    numeric: false
+                                },
+                                toolbar: [{ name: "create", text: "Add" }
+                                    , { name: "save", text: "Save" }
+                                    , { name: "cancel", text: "Cancel" }],
+                                columns: [{ selectable: true, width: "50px" },
+                                {
+                                    field: "tenkh",
+                                    title: "Họ Tên",
+                                    filterable: {
+                                        multi: true,
+                                        search: true
+                                    },
+                                    width: 110,
+                                    footerTemplate: "Total count: #=count#",
+                                }, { field: "TENDANGNHAP", title: "Username",filterable: { multi: true, search: true }, width: "100px" },
+                                { field: "dienthoai", title: "Điện Thoại", filterable: { multi: true, search: true }, width: "100px" },
+                                { field: "DIACHI", title: "Địa Chỉ", filterable: { multi: true, search: true }, width: "80px" },
+                                {
+                                    command: [{text:"EDIT",click:showDetails},"destroy"], title: "", width: "180px"
+                                }
+                                ],
+                                filterable: true,
+                                editable: "popup",
+                                // close: function (e)
+                                // {
+                                //     console.log("thanh cong!");
+                                //     // kendoConsole.log("event :: close");
+                                // },
+                               
+                                remove: function (e) {                                      
+                                //    console.log("Xóa", e.model.id);
+                                   deleteTaiKhoanKhachHang(e.model.id);
+                               }
+                            }).data("kendoGrid");
+                       
+                        wnd = $("#details")
+                            .kendoWindow({
+                                title: "Tài khoản khách hàng",
+                                modal: true,
+                                visible: false,
+                                resizable: false,
+                                width: 450
+                            }).data("kendoWindow");
+                        detailsTemplate = kendo.template($("#template").html());
+                        });
+                        
+                        function showDetails(e) {
+                            e.preventDefault();
+
+                            var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                            wnd.content(detailsTemplate(dataItem));
+                            wnd.center().open();
+                        } 
+                        $("#close-button").click(function () {
+                        // call 'close' method on nearest kendoWindow
+                        // $(this).closest("[data-role=details]").data("kendoWindow").close();
+                        // the above is equivalent to:
+                        //$(this).closest(".k-window-content").data("kendoWindow").close();
+                        })
+                        $("#get_update").click(function () {
+                            alert("tc");
+                        })
+                        
+                        
+                    </script>
+
+                    <script type="text/x-kendo-template" id="template">
+                        
+                        <div id="details-container">
+                           <label class="w3-text-black"> <b>Họ Tên:</b> </label>
+                           <input class="w3-input w3-border" type="text" value="#=tenkh#" id="dig_tenkh">
+                           <br>
+                            <label class="w3-text-black"><b>Username:</b></label>
+                           <input class="w3-input w3-border" type="text" value="#=TENDANGNHAP#" id="dig_tendangnhap">
+                        </br>
+                        <label class="w3-text-black"><b>Điện thoại:</b> </label>
+                           <input class="w3-input w3-border" type="text" value="#=dienthoai#" id="dig_dienthoai">
+                        </br>
+
+                           <label class="w3-text-black"> <b>Địa chỉ:</b> </label>
+                            <input class="w3-input w3-border" type="text" value="#=DIACHI#" id="dig_diachi">
+                            <br>
+                        <button class="k-button" id="get_update">Update</button>
+                        <button class="k-button" id="close-button">Close</button>
+                        </div>
+                        
+                        <style>
+                            .k-button{
+                                text-align:center;
+                                color: blue;
+                            }
+                        </style>
+                    </script>
+
+                    <style type="text/css">
+                        #details-container {
+                            padding: 5px;
+                        }
+
+                            #details-container h2 {
+                                margin: 0;
+                            }
+
+                            #details-container em {
+                                color: #8c8c8c;
+                            }
+
+                            #details-container dt {
+                                margin: 0;
+                                display: inline;
+                            }
+                    </style>
+                    
+                </div>
+                <div class="dsnx">
+                        <div id="grid_dsnx"></div>
+                        <style>
+                            #grid {
+                                margin-top: 10px;
+                            }
+                        </style>
+                        <script>
+                            $(document).ready(function () {
+                                $("#grid_dsnx").kendoGrid({
+                                    dataSource: {
+                                        data: null,
+                                        schema: {
+                                            model: {
+                                                fields: {
+                                                    id: { type: "number" },
+                                                    tennhaxe: { type: "string" },                                                       
+                                                    dienthoai: { type: "string" },
+                                                    email: { type: "string" },
+                                                    diemdanhgia: { type: "number" },
+                                                    soluongxe: { type: "number" },
+                                                }
+                                            }
+                                        },
+                                        pageSize: 2,
+                                        aggregate: [{ field: "id", aggregate: "count" }]
+                                    },
+                                    height: 550,
+                                    sortable: true,
+                                    pageable: {
+                                        input: true,
+                                        numeric: false
+                                    },
+                                    toolbar: [{ name: "create", text: "Add" }
+                                        , { name: "save", text: "Save" }
+                                        , { name: "cancel", text: "Cancel" }],
+                                    columns: [{ selectable: true, width: "50px" },
+                                    {
+                                        field: "id",
+                                        title: "ID",
+                                        filterable: {
+                                            multi: true,
+                                            search: true
+                                        },
+                                        width: "70px",
+                                        footerTemplate: "Total count: #=count#",
+                                    }, { field: "tennhaxe", title: "Tên nhà xe", width: "100px",filterable: { multi: true, search: true }, width: "100px"},
+                                    { field: "dienthoai", title: "Điện Thoại", filterable: { multi: true, search: true }, width: "100px" },
+                                    { field: "email", title: "Email", filterable:{multi:true,search:true}, width: "80px" },
+                                    { field: "soluongxe", title: "SL xe", filterable: { multi: true, search: true }, width: "80px" },
+                                    {
+                                        command: ["destroy"], title: "", width: "100px"
+                                    }
+                                    ],
+                                    filterable: true,
+                                    editable: "popup",
+                                    remove: function (e) {
+                                        
+                                    }
+                                });
+                            });
+                        </script>
+                </div>
+                <div class="dsv">
+                        <div id="grid_dsv"></div>
+                        <style>
+                            #grid_dsv {
+                                margin-top: 10px;
+                            }
+                        </style>
+                        <script>
+                            $(document).ready(function () {
+                                $("#grid_dsv").kendoGrid({
+                                    dataSource: {
+                                        data: null,
+                                        schema: {
+                                            model: {
+                                                fields: {
+                                                    id: { type: "number" },
+                                                    tennhaxe: { type: "string" },                                                       
+                                                    giodi: { type: "date" },
+                                                    gioden: { type: "date" },
+                                                    giave: { type: "number" }
+                                                }
+                                            }
+                                        },
+                                        pageSize: 2,
+                                        aggregate: [{ field: "id", aggregate: "count" }]
+                                    },
+                                    height: 550,
+                                    sortable: true,
+                                    pageable: {
+                                        input: true,
+                                        numeric: false
+                                    },
+                                    toolbar: [{ name: "create", text: "Add" }
+                                        , { name: "save", text: "Save" }
+                                        , { name: "cancel", text: "Cancel" }],
+                                    columns: [{ selectable: true, width: "50px" },
+                                    {
+                                        field: "id",
+                                        title: "ID",
+                                        filterable: {
+                                            multi: true,
+                                            search: true
+                                        },
+                                        width: "70px",
+                                        footerTemplate: "Total count: #=count#",
+                                    }, { field: "tennhaxe", title: "Tên nhà xe", width: "100px",filterable: { multi: true, search: true }, width: "100px"},
+                                    { field: "giodi", title: "TG đi", filterable:{multi:true,search:true}, width: "80px" },
+                                    { field: "gioden", title: "TG đến", filterable: { multi: true, search: true }, width: "80px" },
+                                    { field: "giave", title: "Giá vé", filterable: { multi: true, search: true }, width: "100px" },
+                                    {
+                                        command: ["destroy"], title: "", width: "100px"
+                                    }
+                                    ],
+                                    filterable: true,
+                                    editable: "popup",
+                                    remove: function (e) {
+                                        
+                                    }
+                                });
+                            });
+                        </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.3.1017/styles/kendo.common-material.min.css" />
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.3.1017/styles/kendo.material.min.css" />
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.3.1017/styles/kendo.material.mobile.min.css" />

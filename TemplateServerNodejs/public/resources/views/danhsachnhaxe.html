@@ -1,0 +1,183 @@
+<div class="row">
+    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Thông tin chuyến đi</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form class="form-inline">
+                            <div class="form-group"><i class="glyphicon glyphicon-map-marker"></i>
+                                <label>Điểm đi</label>
+                                <select ng-model="selectedDiemDi" ng-options="dsdiemdi.DiemDi for dsdiemdi in diemdis">
+                                </select>
+                            </div>
+
+                            <div class="form-group"><i class="glyphicon glyphicon-map-marker"></i>
+                                <label>Điểm đến</label>
+                                <select ng-model="selectedDiemDen" ng-options="dsdiemden.DiemDen for dsdiemden in diemdens">
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Ngày đi</label>
+                                <input class="form-control" ng-model="ngay" type="date" id="ngaydi">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-success" type="button" ng-click='TimXe()'>Tìm Kiếm</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-1 col-md-1 col-sm-1"></div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Nhà xe </h3>
+                    </div>
+                    <div class="panel-body">
+                        <select ng-model="selectedNhaXe" ng-options="nhaxe.TENNHAXE for nhaxe in danhsachnhaxe">
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Loại xe</h3>
+                    </div>
+                    <div class="panel-body">
+                        <select ng-model="selectedLoaiXe" ng-options="lx.TENLOAI for lx in loaixes">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Thời gian</h3>
+                    </div>
+                    <div class="panel-body">
+                        <select ng-model="selectedThoiGian" ng-options=" thoigian.name for thoigian in thoigians">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Giá vé</h3>
+                    </div>
+                    <div class="panel-body">
+                        <select ng-model="selectedGiaVe" ng-options=" gv.name for gv in giaves">
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Đánh giá</h3>
+                    </div>
+                    <div class="panel-body">
+                        <select ng-model="selectedDanhGia" ng-options=" dg.name for dg in danhgias">
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row" ng-repeat="ttcx in danhsachchuyenxe | filter:selectedNhaXe.TENNHAXE | orderBy:GIAVE:selectedGiaVe.value ">
+                    <div class="col-md-12 RectangleBody">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>NHÀ XE</th>
+                                        <th>KHỞI HÀNH</th>
+                                        <th>THỜI GIAN ĐẾN</th>
+                                        <th>LOẠI XE</th>
+                                        <th>SỐ GHẾ TRỐNG</th>
+                                        <th>ĐÁNH GIÁ</th>
+                                        <th>GIÁ VÉ</th>
+                                        <th> </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{ttcx.TENNHAXE}}</td>
+                                        <td>{{ttcx.GIODI}}</td>
+                                        <td>{{ttcx.GIODEN}}</td>
+                                        <td>{{ttcx.TENLOAI}}</td>
+                                        <td>{{ttcx.SOCHOTRONG}}</td>
+                                        <td>{{ttcx.DIEMDANHGIA}}</td>
+                                        <td>{{ttcx.GIAVE}}</td>
+                                        <td ng-hide="{{globals.currentUser.isLogin}}">
+                                            <button type="button" class="btn btn-info btn-lg" ng-click="chonDatVe(ttcx)" data-toggle="modal"
+                                                data-target="#myModal">Đặt vé</button>
+
+                                        </td>
+                                        <td ng-show="{{globals.currentUser.isLogin}}">
+                                            <button class="btn btn-success" type="button" ng-click="datvexe(ttcx)">Đặt
+                                                vé</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row space"></div>
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+</div>
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Vui lòng đăng nhập để thanh toán</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Username</div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <input type="text" class="form-control" ng-model="username"/>
+                        </div>
+                        <div>
+                             <br />
+                            <br />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Password</div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <input type="password" class="form-control" ng-model="password"/>
+                        </div>
+                        <div>
+                            <br />
+                            <br />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Huỷ</button>
+                <button class="btn btn-primary" type="button" ng-click="datvexeLogin()">Đăng nhập</button>
+            </div>
+        </div>
+    </div>
+</div>

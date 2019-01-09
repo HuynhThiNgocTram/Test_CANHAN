@@ -1,0 +1,233 @@
+<div ng-if="error" id="container" class="container bs-docs-container clearfix">
+    <form class="form-horizontal">
+        <div role="alert" class="alert alert-warning clearfix">
+            <div class="alert_left">
+                <img width="65" height="62" alt="Error" src="/assets/img/ic_notification.png">
+            </div>
+            <div class="alert_right">
+                <h3>Thông báo</h3>
+                <ul>
+                    Có lỗi xảy ra trong quá trình xử lý! Quý khách vui lòng thực hiện lại giao dịch. Điện thoại hỗ trợ:
+                    1900 55 55 77 </ul>
+            </div>
+        </div>
+
+    </form>
+</div>
+<div ng-hidden="error">
+    <div style="height: 400px; text-align: center;" ng-show="ketquaDatVe==='00'">
+        <div style="color:red;font-size:50px;">Đặt vé thành công</div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="text-center" style="color:white;font-size:20px;font-weight:bold">THÔNG TIN ĐẶT VÉ</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>MA THANH TOAN</td>
+                                    <td>{{IDTHANHTOAN}}</td>
+                                </tr>
+                                <tr>
+                                    <td>NHÀ XE</td>
+                                    <td>{{ttcx.TENNHAXE}}</td>
+                                </tr>
+                                <tr>
+                                    <td>TUYẾN</td>
+                                    <td>{{ttcx.DIEMDI}} -> {{ttcx.DIEMDEN}}</td>
+                                </tr>
+                                <tr>
+                                    <td>NGÀY GIỜ ĐI</td>
+                                    <td>{{ttcx.GIODI}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>GHẾ/GIƯỜNG</td>
+                                    <td>{{slnguoi}}</td>
+                                </tr>
+                                <tr>
+                                    <td>GIÁ VÉ</td>
+                                    <td>{{ttcx.GIAVE}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>TỔNG TIỀN</td>
+                                    <td>{{ttcx.GIAVE*slnguoi}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height: 400px; text-align: center;" ng-show="ketquaDatVe!=='00'">
+        <div style="color:red;font-size:50px;">Đặt vé thất bại</div>
+        <div style="color:red;font-size:50px;">Mã Lỗi Của Bạn: {{ketquaDatVe}}</div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead style="color:rgb(0, 255, 0)">
+                                <tr>
+                                    <th>Mã Lỗi</th>
+                                    <th>Ý nghĩa</th>
+                                </tr>
+                            </thead>
+                            <tbody style="color:white">
+                                <tr>
+                                    <td>01</td>
+                                    <td>Giao dịch đã tồn tại</td>
+                                </tr>
+                                <tr>
+                                    <td>02</td>
+                                    <td>Merchant không hợp lệ (kiểm tra lại vnp_TmnCode)</td>
+                                </tr>
+                                <tr>
+                                    <td>03</td>
+                                    <td>Dữ liệu gửi sang không đúng định dạng</td>
+                                </tr>
+                                <tr>
+                                    <td>04</td>
+                                    <td>Khởi tạo GD không thành công do Website đang bị tạm khóa</td>
+                                </tr>
+                                <tr>
+                                    <td>05</td>
+                                    <td>Giao dịch không thành công do: Quý khách nhập sai mật khẩu quá số lần quy định.
+                                        Xin quý khách vui lòng thực hiện lại giao dịch</td>
+                                </tr>
+                                <tr>
+                                    <td>13</td>
+                                    <td>Giao dịch không thành công do Quý khách nhập sai mật khẩu xác thực giao dịch
+                                        (OTP). Xin quý khách vui lòng thực hiện lại giao dịch.</td>
+                                </tr>
+                                <tr>
+                                    <td>07</td>
+                                    <td>Giao dịch bị nghi ngờ là giao dịch gian lận</td>
+                                </tr>
+
+                                <tr>
+                                    <td>09</td>
+                                    <td>Giao dịch không thành công do: Thẻ/Tài khoản của khách hàng chưa đăng ký dịch
+                                        vụ InternetBanking tại ngân hàng.</td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>Giao dịch không thành công do: Khách hàng xác thực thông tin thẻ/tài khoản
+                                        không đúng quá 3 lần</td>
+                                </tr>
+                                <tr>
+                                    <td>11</td>
+                                    <td>Giao dịch không thành công do: Đã hết hạn chờ thanh toán. Xin quý khách vui
+                                        lòng thực hiện lại giao dịch.</td>
+                                </tr>
+                                <tr>
+                                    <td>12</td>
+                                    <td>Giao dịch không thành công do: Thẻ/Tài khoản của khách hàng bị khóa.</td>
+                                </tr>
+                                <tr>
+                                    <td>51</td>
+                                    <td>Giao dịch không thành công do: Tài khoản của quý khách không đủ số dư để thực
+                                        hiện giao dịch.</td>
+                                </tr>
+                                <tr>
+                                    <td>65</td>
+                                    <td>Giao dịch không thành công do: Tài khoản của Quý khách đã vượt quá hạn mức giao
+                                        dịch trong ngày.</td>
+                                </tr>
+                                <tr>
+                                    <td>08</td>
+                                    <td>Giao dịch không thành công do: Hệ thống Ngân hàng đang bảo trì. Xin quý khách
+                                        tạm thời không thực hiện giao dịch bằng thẻ/tài khoản của Ngân hàng này.</td>
+                                </tr>
+                                <tr>
+                                    <td>99</td>
+                                    <td>Các lỗi khác (lỗi còn lại, không có trong danh sách mã lỗi đã liệt kê)</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><strong>Tra cứu giao dịch (vnp_Command=querydr)</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>91</td>
+                                    <td>Không tìm thấy giao dịch yêu cầu</td>
+                                </tr>
+                                <tr>
+                                    <td>02</td>
+                                    <td>Merchant không hợp lệ (kiểm tra lại vnp_TmnCode)</td>
+                                </tr>
+                                <tr>
+                                    <td>03</td>
+                                    <td>Dữ liệu gửi sang không đúng định dạng</td>
+                                </tr>
+                                <tr>
+                                    <td>08</td>
+                                    <td>Hệ thống đang bảo trì</td>
+                                </tr>
+                                <tr>
+                                    <td>97</td>
+                                    <td>Chữ ký không hợp lệ</td>
+                                </tr>
+                                <tr>
+                                    <td>99</td>
+                                    <td>Các lỗi khác (lỗi còn lại, không có trong danh sách mã lỗi đã liệt kê)</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><strong>Gửi yêu cầu hoàn trả (vnp_Command=refund)</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>91</td>
+                                    <td>Không tìm thấy giao dịch yêu cầu hoàn trả</td>
+                                </tr>
+                                <tr>
+                                    <td>02</td>
+                                    <td>Merchant không hợp lệ (kiểm tra lại vnp_TmnCode)</td>
+                                </tr>
+                                <tr>
+                                    <td>03</td>
+                                    <td>Dữ liệu gửi sang không đúng định dạng</td>
+                                </tr>
+                                <tr>
+                                    <td>08</td>
+                                    <td>Hệ thống đang bảo trì</td>
+                                </tr>
+                                <tr>
+                                    <td>93</td>
+                                    <td>Số tiền hoàn trả không hợp lệ. Số tiền hoàn trả phải nhỏ hơn hoặc bằng số tiền
+                                        thanh toán.</td>
+                                </tr>
+                                <tr>
+                                    <td>94</td>
+                                    <td>Giao dịch đã được gửi yêu cầu hoàn tiền trước đó. Yêu cầu này VNPAY đang xử lý</td>
+                                </tr>
+                                <tr>
+                                    <td>95</td>
+                                    <td>Giao dịch này không thành công bên VNPAY. VNPAY từ chối xử lý yêu cầu.</td>
+                                </tr>
+                                <tr>
+                                    <td>97</td>
+                                    <td>Chữ ký không hợp lệ</td>
+                                </tr>
+                                <tr>
+                                    <td>99</td>
+                                    <td>Các lỗi khác (lỗi còn lại, không có trong danh sách mã lỗi đã liệt kê)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

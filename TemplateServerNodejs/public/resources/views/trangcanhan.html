@@ -1,0 +1,185 @@
+<div class="row">
+    <div class="col-lg-2 col-md-1 col-sm-2 col-xs-2"></div>
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="text-center">Tài khoản của bạn</h4>
+            </div>
+        </div>
+        <ul class="list-unstyled cataloge" style="color:red">
+            <li ng-click="tabkhachhang=1">Thông tin tài khoản</li>
+            <li ng-click="tabkhachhang=2">Lịch sử hoạt động</li>
+            <li ng-click="tabkhachhang=3">Đổi mật khẩu</li>
+        </ul>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+        <div ng-show="tabkhachhang==1">
+            <ul class="list-unstyled cataloge">
+                <h2 class="text-center">Thông tin tài khoản<br>
+                    <br>
+                </h2>
+
+                <form ng-submit="updatethongtin()">
+                    <div class="form-group form-inline">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><span class="label label-default">Họ tên</span></div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <input class="form-control" type="text" ng-model="TENKH">
+                        </div>
+                        <br>
+                        <br>
+
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><span class="label label-default">CMND</span></div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <input class="form-control" type="text" ng-model="CMND">
+                        </div>
+                        <br>
+                        <br>
+
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><span class="label label-default">Địa chỉ</span></div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <input class="form-control" type="text" ng-model="DIACHI">
+                        </div>
+                        <br>
+                        <br>
+
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><span class="label label-default">Giới tính</span></div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <select class="form-control" type="text" ng-model="GIOITINH">
+                                <option value="1" selected="">Nam</option>
+                                <option value="2">Nữ</option>
+                            </select>
+                        </div>
+                        <br>
+                        <br>
+
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><span class="label label-default">Số điện
+                                thoại</span></div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <input class="form-control" type="text" ng-model="DIENTHOAI">
+                        </div>
+                        <br>
+                        <br>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <button class="btn btn-success btn-lg" type="submit">Cập nhật</button>
+                        </div>
+                        <br>
+                        <br>
+
+                    </div>
+                    <br>
+
+
+                </form>
+        </div>
+
+        <div ng-show="tabkhachhang==2">
+            <ul class="list-unstyled cataloge">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="text-center">Lịch sử hoạt động<br>
+                            <br>
+                        </h1>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+
+                            <table class="table">
+
+                                <thead>
+                                    <tr>
+                                        <th class="warning">Gio di</th>
+                                        <th class="warning">Nhà xe</th>
+                                        <th class="warning">Điểm đi</th>
+                                        <th class="warning">Điểm đến </th>
+                                        <th class="warning">Giá </th>
+                                        <th class="warning">Tình trạng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="LichSu  in lichsuhoatdong"  >
+                                        <td>{{LichSu.GIODI}}</td>
+                                        <td>{{LichSu.TENNHAXE}}</td>
+                                        <td>{{LichSu.DIEMDI}}</td>
+                                        <td>{{LichSu.DIEMDEN}}</td>
+                                        <td>{{LichSu.GIAVE}}</td>
+                                        <td>{{LichSu.TENTRANGTHAI}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <div ng-show="tabkhachhang==3">
+            <ul class="list-unstyled cataloge">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="text-center">Đổi mật khẩu<br>
+                            <br>
+                        </h1>
+                        <form ng-submit="updatematkhau()">
+                            <div class="form-group form-inline">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><span class="label label-default">Mật
+                                        khẩu cũ</span></div>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                    <input class="form-control" type="text" ng-model="MATKHAU">
+                                </div>
+                                <br>
+                                <br>
+
+                            </div>
+                            <div class="form-group form-inline">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><span class="label label-default">Mật
+                                        khẩu mới</span></div>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                    <input class="form-control" type="text" ng-model="MATKHAUMOI">
+                                </div>
+                                <br>
+                                <br>
+
+
+                            </div>
+                            <div class="form-group form-inline">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><span class="label label-default">Nhập
+                                        lại mật khẩu</span></div>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                    <input class="form-control" type="text" ng-model="NHAPLAIMATKHAU">
+                                </div>
+                                <br>
+                                <br>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <button class="btn btn-success btn-lg" type="submit">Đổi mật khẩu</button>
+                                </div>
+                                <br>
+                                <br>
+                            </div>
+                        </form>
+                        <br>
+                        <br>
+
+                    </div>
+                    </form>
+                </div>
+                <div>
+                </div>
+        </div>
+        
+    </div>
+</div>
+</div>

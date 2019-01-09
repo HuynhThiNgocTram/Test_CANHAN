@@ -1,0 +1,93 @@
+<div class="row">
+    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+        <div class="row">
+            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p style="color:red; font-size:20px;font-weight:bold">VUI LÒNG CHỌN HÌNH THỨC THANH TOÁN</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="font-size:16px; color:white">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" ng-model="checkradio" value="PayPal Sandbox" >Thanh toán bắng PayPal Sandbox</label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" ng-model="checkradio" value="VNPay Sandbox">Thanh toán bắng VNPay Sandbox</label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" ng-model="checkradio" value="Bao Kim Sandbox">Thanh toán bắng Bảo Kim Sandbox</label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" ng-model="checkradio" value="Ngan Luong Sandbox">Thanh toán bắng Ngân Lượng Sandbox</label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" ng-model="checkradio"  value="Chuyen khoan">Thanh toán bắng chuyển khoản ngân hàng</label>
+                        </div>
+                        <button class="btn btn-success" type="button" ng-click="chonthanhtoan()">Thanh toán</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>Giao dịch tại EC1806.com được cam kết an toàn và bảo mật chứng nhận bới Bộ Công Thương Việt
+                            Nam. </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="text-center" style="color:red;font-size:20px;font-weight:bold">THÔNG TIN ĐẶT VÉ</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr></tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    <tr>
+                                        <td>NHÀ XE</td>
+                                        <td>{{ttcx.TENNHAXE}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>TUYẾN</td>
+                                        <td>{{ttcx.DIEMDI}}->{{ttcx.DIEMDEN}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NGÀY GIỜ ĐI</td>
+                                        <td>{{ttcx.GIODI}}</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>GHẾ/GIƯỜNG</td>
+                                        <td><input type="number" ng-model="slnguoi"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>GIÁ VÉ</td>
+                                        <td>{{ttcx.GIAVE}}</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>TỔNG TIỀN</td>
+                                        <td>{{ttcx.GIAVE*slnguoi}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+</div>

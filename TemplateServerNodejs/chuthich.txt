@@ -1,0 +1,5 @@
+-b1: them file css, js vao assets
+-b2: include duong dan vao index.html
+-b3: tao controller trong resource/controller
+-b4: include vao index.html
+-b5: ket hop controller va view nam trong resource/vendor/angular-app.js

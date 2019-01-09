@@ -1,0 +1,488 @@
+<div class="Main" style="margin-top: -20px">
+    <div class="Form1_image">
+        <div class="row">
+            <div class="col-sm-12">
+                <br>
+                <br>
+                <br>
+                <h1 id="title">Hơn 300 Chuyến đi, về từ Sài Gòn đến các tỉnh miền Tây mỗi ngày</h1>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-sm-1">
+            </div>
+            <div class="col-sm-11">
+                <p id="txtThongtinchuyendi">NHẬP THÔNG TIN CHUYẾN ĐI</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-1">
+            </div>
+            <div class="col-sm-3">
+                <select ng-model="selectDiemDi" ng-options="dt.DiemDi for dt in diemdi" class="form-control" id="diadiemxuatphat">
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <select ng-model="selectDiemDen" ng-options="dd.DiemDen for dd in diemden" class="form-control" id="diemden">
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <!-- <input type='date' class="form-control" id='datetimepicker4' /> -->
+
+                <input id="datetitle" value="25/12/2018" title="datetimepicker"  class="form-control" style="width: 100%" />
+                <script>
+                    $(document).ready(function () {
+                        // create DatePicker from input HTML element
+                        $("#datetitle").kendoDatePicker();
+                    });
+                </script>
+            </div>
+            <div class="col-sm-2">
+                <button ng-click="timvexe()" id="timve">Tìm Vé</button>
+            </div>
+            <div class="col-sm-1">
+            </div>
+        </div>
+    </div>
+    <div class=Form2>
+        <div class="row">
+            <div class="col-sm-12">
+                <br>
+                <br>
+                <br>
+                <p class="ttl">Chuyến đi phổ biến</p>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <ul class="nav nav-tabs panel-heading">
+                <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#IDtab-1">Sài Gòn</a></li>
+                <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#IDtab-2">Cần Thơ</a></li>
+            </ul>
+            <div class="tab-content panel-body">
+                <div class="tab-pane" role="tabpanel" id="IDtab-1">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div ng-repeat="chuyenxe  in chuyendiphobiensaigon" class="row khungrow" ng-if="$index%2==0">
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    <p ng-model="model_diemdi">{{chuyenxe.DiemDi}}</p>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    <img src="assets/img/bus.jpg" alt="Chicago" style="width:50%;">
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    <p ng-model="model_diemden"><b>{{chuyenxe.DiemDen}}</b></p>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <p>{{chuyenxe.minGiaVe}} vnd</p>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <input id="datepicker" ng-change="changedate()" ng-model="startdate" title="datepicker"
+                                        style="width: 100%" />
+                                    <script>
+                                        $(document).ready(function () {
+                                            $("#datepicker").kendoDatePicker();
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div ng-repeat="chuyenxe  in chuyendiphobiensaigon" class="row khungrow" ng-if="$index%2!=0">
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    <p>{{chuyenxe.DiemDi}}</p>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    <img src="assets/img/bus.jpg" alt="Chicago" style="width:50%;">
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    <p><b>{{chuyenxe.DiemDen}}</b></p>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <p>{{chuyenxe.minGiaVe}} vnd</p>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <input id="datepicker2" value="25/12/2018" title="datepicker" style="width: 100%" />
+                                    <script>
+                                        $(document).ready(function () {
+                                            // create DatePicker from input HTML element
+                                            $("#datepicker2").kendoDatePicker();
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane active" role="tabpanel" id="IDtab-2">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div ng-repeat="chuyenxe in chuyendiphobiencantho" class="row khungrow" ng-if="$index%2==0">
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    <p ng-model="model_diemdi">{{chuyenxe.DiemDi}}</p>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    <img src="assets/img/bus.jpg" alt="Chicago" style="width:50%;">
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    <p ng-model="model_diemden"><b>{{chuyenxe.DiemDen}}</b></p>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <p>{{chuyenxe.minGiaVe}} vnd</p>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <input id="datepicker3" ng-change="changedate()" ng-model="startdate" title="datepicker"
+                                        style="width: 100%" />
+                                    <script>
+                                        $(document).ready(function () {
+                                            $("#datepicker3").kendoDatePicker();
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div ng-repeat="chuyenxe  in chuyendiphobiencantho" class="row khungrow" ng-if="$index%2!=0">
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    <p>{{chuyenxe.DiemDi}}</p>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    <img src="assets/img/bus.jpg" alt="Chicago" style="width:50%;">
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    <p><b>{{chuyenxe.DiemDen}}</b></p>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <p>{{chuyenxe.minGiaVe}} vnd</p>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                   <input id="datepicker4" ng-change="changedate()" ng-model="startdate" title="datepicker"
+                                        style="width: 100%" />
+                                    <script>
+                                        $(document).ready(function () {
+                                            $("#datepicker4").kendoDatePicker();
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" role="tabpanel" id="tab-3">
+                    <p>Third tab content.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="Form3">
+        <p class="ttl">Du lịch về miền tây</p>
+        <div class="container">
+            <div id="IDmyCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#IDmyCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#IDmyCarousel" data-slide-to="1"></li>
+                    <li data-target="#IDmyCarousel" data-slide-to="2"></li>
+                </ol>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="assets/img/phuquoc.jpg" alt="Los Angeles" style="width:100%;">
+                        <div class="carousel-caption" ng-click="Xemvexephuquoc()">
+                            <a>
+                                <h3>Phú Quốc</h3>
+                            </a>
+                            <p>LA is always so much fun!</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="assets/img/rungtramtrasuangiang.jpg" alt="Chicago" style="width:100%;">
+                        <div class="carousel-caption" ng-click="Xemvexeangiang()">
+                            <a>
+                                <h3>An Giang</h3>
+                            </a>
+
+                            <p>Thank you, Chicago!</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="assets/img/bentre.jpg" alt="New York" style="width:100%;">
+                        <div class="carousel-caption" ng-click="Xemvexebentre()">
+                            <a>
+                                <h3>Bến Tre</h3>
+                            </a>
+                            <p>We love the Big Apple!</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#IDmyCarousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#IDmyCarousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="Form4">
+        <br />
+        <br />
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <div class="sub">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <p class="box">EC1806</p>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+                    </div>
+
+                </div>
+                <div class="sub">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <p class="subbox">
+                            <a ng-click="trangchu">
+                                Trang Chủ
+                            </a>
+
+                        </p>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+                    </div>
+                </div>
+                <div class="sub">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <p class="subbox">
+                            <a ng-click="gioithieu()">
+                                Giới thiệu
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+                    </div>
+                </div>
+                <div class="sub">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <p class="subbox">
+                            <a ng-click="quydinhchung()">
+                                Quy định chung
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+                    </div>
+                </div>
+                <div class="sub">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <p class="subbox">
+                            <a ng-click="lienhe()">
+                                Liên hệ
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+                    </div>
+                </div>
+                <div class="sub">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+                    </div>
+                </div>
+                <div class="sub">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <p class="subbox">
+                            <a ng-click="dangnhap()">
+                                Đăng nhập
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+                    </div>
+                </div>
+                <div class="sub">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <p class="subbox">
+                            <a ng-click="dangky()">
+                                Đăng ký
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <div class="sub">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <p class="box">Tuyến đường chính </p>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+                    </div>
+                </div>
+                <div class="sub">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <p class="subbox">
+                            <a ng-click="tuyenduongsaigontravinh()">
+                                Sài Gòn - Trà Vinh
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+                    </div>
+                </div>
+                <div class="sub">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <p class="subbox">
+                            <a ng-click="tuyenduongsaigonbentre()">
+                                Sài Gòn - Bến Tre
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+                    </div>
+                </div>
+                <div class="sub">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <p class="subbox">
+                            <a ng-click="tuyenduongsaigondongnai()">
+                                Sài Gòn - Đồng Nai
+                            </a>
+
+                        </p>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+                    </div>
+                </div>
+                <div class="sub">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <p class="subbox">
+                            <a ng-click="tuyenduongsaigonvungtau()">
+                                Sài Gòn - Vũng Tàu
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+                    </div>
+                </div>
+                <div class="sub">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <p class="subbox">
+                            <a ng-click="tuyenduongsaigontravinh()">
+                                Sài Gòn - Trà Vinh
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                <div class="sub">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <p class="box">Liên Hệ </p>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+                    </div>
+                </div>
+                <div class="sub">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <p class="box3">
+                            <a ng-click="diachi()">
+                                Lầu 11, Tòa nhà I - Trường ĐH KHTN cơ sở Nguyễn Văn Cừ, Q5, Tp.Hồ Chí Minh 
+                        </a>
+                    </p>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+                    </div>
+                </div>
+                <div class="sub">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <p class="box3">
+                                <a ng-click="gmail()">
+                                    EC1806@gmail.com
+                                </a>
+                            </p>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

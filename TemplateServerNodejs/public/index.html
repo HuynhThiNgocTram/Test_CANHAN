@@ -1,0 +1,91 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thuong mai dien tu</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+
+    <link rel="stylesheet" href="/assets/fonts/material-icons.css">
+    <link rel="stylesheet" href="/assets/css/body.css">
+    <link rel="stylesheet" href="/assets/css/maukhung.css">
+    <link rel="stylesheet" href="/assets/css/stylesHomepage.css">
+    <link rel="stylesheet" href="/assets/css/kendo.common-material.min.css">
+    <link rel="stylesheet" href="/assets/css/kendo.material.min.css">
+    <link rel="stylesheet" href="/assets/css/styles/kendo.material.mobile.min.css">
+    <link rel="stylesheet" href="/assets/css/w3.css">
+
+    <!-- <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.3.1017/styles/kendo.common-material.min.css" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.3.1017/styles/kendo.material.min.css" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.3.1017/styles/kendo.material.mobile.min.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+</head>
+
+<body ng-app="thuongmaidientu">
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header"><a href="#" class="navbar-brand navbar-link">EC1806 </a>
+                <button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggle collapsed"><span class="sr-only">Toggle
+                        navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+            </div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li role="presentation" class="active"><a href="#">TRANG CHỦ</a></li>
+                    <li role="presentation"><a href="#quydinh">QUY ĐỊNH VÀ GIỚI THIỆU</a></li>
+                    <li role="presentation"><a href="#lienhe">LIÊN HỆ</a></li>
+                    <li role="presentation"><a href="#kiemtrave">KIỂM TRA VÉ</a></li>
+                    <li role="presentation" ng-hide="{{globals.currentUser.isLogin}}"><a href="#">ĐĂNG NHẬP</a></li>
+                    <li role="presentation" ng-hide="{{globals.currentUser.isLogin}}"><a href="#">ĐĂNG KÝ</a></li>
+                    <li class="dropdown" ng-show="{{globals.currentUser.isLogin}}"><a class="dropdown-toggle"
+                            data-toggle="dropdown" aria-expanded="false" href="#khachhang">
+                            <i class="glyphicon glyphicon-user"></i>{{globals.currentUser.username}} <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation"><a href="#khachhang">Thông tin tài khoản</a></li>
+                            <li role="presentation"><a href="#/exit">Thoát</a></li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div ng-view></div>
+    <footer class="text-center navbar-static-bottom">
+        
+    </footer>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/js/myjs.js"></script>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="/resources/vendor/angular.js"></script>
+    <script type="text/javascript" src="/resources/vendor/angular-app.js"></script>
+    <script type="text/javascript" src="/resources/vendor/angular-authentication.js"></script>
+    <script type="text/javascript" src="/resources/vendor/angular-animate.js"></script>
+    <script type="text/javascript" src="/resources/vendor/angular-cookies.js"></script>
+    <script type="text/javascript" src="/resources/vendor/angular-route.js"></script>
+    <script type="text/javascript" src="/resources/vendor/angular-sanitize.js"></script>
+    <script type="text/javascript" src="/resources/vendor/ngStorage.min.js"></script>
+    <script type="text/javascript" src="/resources/vendor/angular-local-storage.min.js"></script>
+    <script type="text/javascript" src="/resources/controllers/login_controller.js"></script>
+    <script type="text/javascript" src="/resources/controllers/exit_controller.js"></script>
+    <script type="text/javascript" src="/resources/controllers/home_controller.js"></script>
+    <script type="text/javascript" src="/resources/controllers/khachhang_controller.js"></script>
+    <script type="text/javascript" src="/resources/controllers/danhsachnhaxe_controller.js"></script>
+    <script type="text/javascript" src="/resources/controllers/huyve_controller.js"></script>
+    <script type="text/javascript" src="/resources/controllers/dangky_controller.js"></script>
+    <script type="text/javascript" src="/resources/controllers/quydinh_controller.js"></script>
+    <script type="text/javascript" src="/resources/controllers/vexe_controller.js"></script>
+    <script type="text/javascript" src="/resources/controllers/homepage_controller.js"></script>
+    <script type="text/javascript" src="/resources/controllers/admin_controller.js"></script>
+    <script type="text/javascript" src="/resources/controllers/nhaxe_controller.js"></script>
+    <script type="text/javascript" src="/resources/controllers/thanhtoan_controller.js"></script>
+    <script type="text/javascript" src="/resources/controllers/thanhtoan/thanhtoanVNPAY_controller.js"></script>
+    <script type="text/javascript" src="/resources/controllers/thanhtoan/returnVNPAY_controller.js"></script>
+
+</body>
+
+</html>

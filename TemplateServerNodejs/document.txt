@@ -1,0 +1,12 @@
+1. Tạo database trong folder db
+    có file fileTest.sql
+-Tự thêm dữ liệu để test
+
+2. Chạy server:
+    Vào folder TemplateServerNodejs.
+    Chạy cmd
+    gõ "npm start"
+
+3.Link hướng dẫn tạo TemplateServerNodejs:
+https://viblo.asia/p/huong-dan-tao-restfull-api-su-dung-node-js-express-va-mysql-3P0lPvxgKox
+https://viblo.asia/p/xay-dung-ung-dung-web-voi-nodejs-express-framework-angularjs-phan-2-QpmleQ0mlrd

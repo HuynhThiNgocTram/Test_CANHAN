@@ -1,0 +1,18 @@
+body{
+  background:url(../../assets/img/Bitmap.jpg) no-repeat center center fixed;
+  -webkit-background-size:cover;
+  -moz-background-size:cover;
+  -o-background-size:cover;
+  background-size:cover;
+}
+
+.rectangle{
+  font-size:50px;
+  width:50px;
+}
+
+.rectangle:hover{
+  background-color:rgba(0,0,0,0);
+}
+
+
